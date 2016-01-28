@@ -38,6 +38,8 @@ namespace Garage2.Controllers
         // GET: Vehicles/Create
         public ActionResult Create()
         {
+            Member m = TempData["member"] as Member;
+            ViewBag.Name = m.Name;
             return View();
         }
 
@@ -54,6 +56,9 @@ namespace Garage2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            
+
 
             return View(vehicle);
         }

@@ -115,6 +115,25 @@ namespace Garage2.Controllers
             return RedirectToAction("Index");
         }
 
+        
+        public ActionResult ParkVehicle(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Member member = db.Members.Find(id);
+            if (member == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                TempData["Member"] = member;
+            }
+            return RedirectToAction("Create", "Vehicles");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
