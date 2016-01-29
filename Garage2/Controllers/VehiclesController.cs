@@ -48,12 +48,17 @@ namespace Garage2.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [AcceptVerbs(HttpVerbs.Post)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "VehicleId,MemberId,RegNr,Color,CheckInTime,ParkNr")] Vehicle vehicle)
+        public ActionResult Create([Bind(Include = "VehicleId,RegNr,Color,ParkNr")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
-                vehicle.MemberId = ViewBag.MemberId;
+                //Extremt ful lösning!!
+                var id = Request["memberId"];
+                string value = id.TrimEnd(',');
+                vehicle.MemberId = Convert.ToInt32(value);
+
                 vehicle.CheckInTime = DateTime.Now;
                 vehicle.RegNr = vehicle.RegNr.ToUpper();
                 db.Vehicles.Add(vehicle);
@@ -61,7 +66,6 @@ namespace Garage2.Controllers
                 return RedirectToAction("Index");
             }
 
-            
 
 
             return View(vehicle);
