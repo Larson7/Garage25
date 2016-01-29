@@ -40,6 +40,7 @@ namespace Garage2.Controllers
         {
             Member m = TempData["member"] as Member;
             ViewBag.Name = m.Name;
+            ViewBag.MemberId = m.MemberId;
             return View();
         }
 
@@ -52,6 +53,9 @@ namespace Garage2.Controllers
         {
             if (ModelState.IsValid)
             {
+                vehicle.MemberId = ViewBag.MemberId;
+                vehicle.CheckInTime = DateTime.Now;
+                vehicle.RegNr = vehicle.RegNr.ToUpper();
                 db.Vehicles.Add(vehicle);
                 db.SaveChanges();
                 return RedirectToAction("Index");

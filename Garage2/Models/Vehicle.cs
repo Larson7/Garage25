@@ -14,7 +14,7 @@ namespace Garage2.Models
         public int VehicleId { get; set; }
         public int MemberId { get; set; }
 
-        [Required]
+        
         public TypeVehicle TypeVehicle { get; set; }
 
         [StringLength(10,MinimumLength=4)]
