@@ -23,7 +23,7 @@ namespace Garage2.Controllers
             {
                 member = member.Where(m => m.Name.Contains(searchString));
             }
-            return View(db.Members.ToList());
+            return View(member);
         }
 
         // GET: Members/Details/5

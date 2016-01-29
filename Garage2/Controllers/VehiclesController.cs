@@ -53,6 +53,7 @@ namespace Garage2.Controllers
         {
             if (ModelState.IsValid)
             {
+                vehicle.CheckInTime = DateTime.Now;
                 db.Vehicles.Add(vehicle);
                 db.SaveChanges();
                 return RedirectToAction("Index");
