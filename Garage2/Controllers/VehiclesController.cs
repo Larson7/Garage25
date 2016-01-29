@@ -17,7 +17,8 @@ namespace Garage2.Controllers
         // GET: Vehicles
         public ActionResult Index()
         {
-            return View(db.Vehicles.ToList());
+            var vehicles = db.Vehicles.Include(v => v.Member).Include(v => v.TypeVehicle);
+            return View(vehicles.ToList());
         }
 
         // GET: Vehicles/Details/5
@@ -38,9 +39,8 @@ namespace Garage2.Controllers
         // GET: Vehicles/Create
         public ActionResult Create()
         {
-            Member m = TempData["member"] as Member;
-            ViewBag.Name = m.Name;
-            ViewBag.MemberId = m.MemberId;
+            ViewBag.MemberId = new SelectList(db.Members, "MemberId", "Name");
+            ViewBag.TypeVehicleId = new SelectList(db.TypeVehicles, "TypeVehicleId", "VType");
             return View();
         }
 
@@ -48,27 +48,18 @@ namespace Garage2.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [AcceptVerbs(HttpVerbs.Post)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "VehicleId,RegNr,Color,ParkNr")] Vehicle vehicle)
+        public ActionResult Create([Bind(Include = "VehicleId,MemberId,TypeVehicleId,RegNr,Color,CheckInTime,ParkNr")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
-                //Extremt ful lösning!!
-                var id = Request["memberId"];
-                string value = id.TrimEnd(',');
-                vehicle.MemberId = Convert.ToInt32(value);
-
-                ViewBag.Name = Request["Name"];
-                vehicle.CheckInTime = DateTime.Now;
-                vehicle.RegNr = vehicle.RegNr.ToUpper();
                 db.Vehicles.Add(vehicle);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            
 
-
+            ViewBag.MemberId = new SelectList(db.Members, "MemberId", "Name", vehicle.MemberId);
+            ViewBag.TypeVehicleId = new SelectList(db.TypeVehicles, "TypeVehicleId", "VType", vehicle.TypeVehicleId);
             return View(vehicle);
         }
 
@@ -84,6 +75,8 @@ namespace Garage2.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.MemberId = new SelectList(db.Members, "MemberId", "Name", vehicle.MemberId);
+            ViewBag.TypeVehicleId = new SelectList(db.TypeVehicles, "TypeVehicleId", "VType", vehicle.TypeVehicleId);
             return View(vehicle);
         }
 
@@ -92,7 +85,7 @@ namespace Garage2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VehicleId,MemberId,RegNr,Color,CheckInTime,ParkNr")] Vehicle vehicle)
+        public ActionResult Edit([Bind(Include = "VehicleId,MemberId,TypeVehicleId,RegNr,Color,CheckInTime,ParkNr")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
@@ -100,6 +93,8 @@ namespace Garage2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.MemberId = new SelectList(db.Members, "MemberId", "Name", vehicle.MemberId);
+            ViewBag.TypeVehicleId = new SelectList(db.TypeVehicles, "TypeVehicleId", "VType", vehicle.TypeVehicleId);
             return View(vehicle);
         }
 

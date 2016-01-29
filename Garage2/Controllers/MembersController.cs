@@ -15,15 +15,15 @@ namespace Garage2.Controllers
         private Garage2Context db = new Garage2Context();
 
         // GET: Members
-        public ActionResult Index(string searchString)
+        public ActionResult Index()
         {
             var member = from m in db.Members
-                          select m;
+                         select m;
             if (!String.IsNullOrEmpty(searchString))
             {
                 member = member.Where(m => m.Name.Contains(searchString));
             }
-            return View(member);
+            return View(db.Members.ToList());
         }
 
         // GET: Members/Details/5
@@ -119,25 +119,6 @@ namespace Garage2.Controllers
             db.Members.Remove(member);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        
-        public ActionResult ParkVehicle(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Member member = db.Members.Find(id);
-            if (member == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                TempData["Member"] = member;
-            }
-            return RedirectToAction("Create", "Vehicles");
         }
 
         protected override void Dispose(bool disposing)

@@ -121,7 +121,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
+    <Compile Include="Controllers\MembersController_fail.cs" />
     <Compile Include="Controllers\VehiclesController.cs" />
+    <Compile Include="Controllers\VehiclesController_fail.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -190,16 +192,21 @@
     <Content Include="Views\Vehicles_old\Index.cshtml" />
     <Content Include="Views\Vehicles_old\Receipt.cshtml" />
     <Content Include="Views\Vehicles_old\Edit.cshtml" />
-    <Content Include="Views\Vehicles\Create.cshtml" />
-    <Content Include="Views\Vehicles\Delete.cshtml" />
-    <Content Include="Views\Vehicles\Details.cshtml" />
-    <Content Include="Views\Vehicles\Edit.cshtml" />
-    <Content Include="Views\Vehicles\Index.cshtml" />
+    <Content Include="Views\Vehicles_fail\Create.cshtml" />
+    <Content Include="Views\Vehicles_fail\Delete.cshtml" />
+    <Content Include="Views\Vehicles_fail\Details.cshtml" />
+    <Content Include="Views\Vehicles_fail\Edit.cshtml" />
+    <Content Include="Views\Vehicles_fail\Index.cshtml" />
     <Content Include="Views\Members\Create.cshtml" />
     <Content Include="Views\Members\Delete.cshtml" />
     <Content Include="Views\Members\Details.cshtml" />
     <Content Include="Views\Members\Edit.cshtml" />
     <Content Include="Views\Members\Index.cshtml" />
+    <Content Include="Views\Vehicles\Create.cshtml" />
+    <Content Include="Views\Vehicles\Delete.cshtml" />
+    <Content Include="Views\Vehicles\Details.cshtml" />
+    <Content Include="Views\Vehicles\Edit.cshtml" />
+    <Content Include="Views\Vehicles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -16,6 +16,15 @@ namespace Garage2.Migrations
 
         protected override void Seed(Garage2.Models.Garage2Context context)
         {
+            context.TypeVehicles.AddOrUpdate(
+                t => t.VType,
+                new TypeVehicle { VType = "Airplane" },
+                 new TypeVehicle { VType = "Boat" },
+                  new TypeVehicle { VType = "Buss" },
+                   new TypeVehicle { VType = "Car" },
+                    new TypeVehicle { VType = "Motorcycle" }
+                );
+
             //  This method will be called after migrating to the latest version.
 
             //if (context.Vehicles.Count()==0)
@@ -26,7 +35,7 @@ namespace Garage2.Migrations
             //    new Vehicle { RegNr = "AAA111", Type = VType.Car, Brand = "Audi", ProdName = "90", Color = "Red", Wheels = 4, CheckInTime=DateTime.Now, ParkNr=1 },
             //    new Vehicle { RegNr = "BBB222", Type = VType.Car, Brand = "Volvo", ProdName = "XC90", Color = "Black", Wheels = 4, CheckInTime = DateTime.Now, ParkNr=7 },
             //    new Vehicle { RegNr = "CCC333", Type = VType.Car, Brand = "Fiat", ProdName = "Uno", Color = "Yellow", Wheels = 4, CheckInTime = DateTime.Now, ParkNr=4 }
-              
+
             //  );
 
             //} else
@@ -62,12 +71,12 @@ namespace Garage2.Migrations
 
             //}
 
-            
 
-           
+
+
         }
 
-    
+
 
     }
 }

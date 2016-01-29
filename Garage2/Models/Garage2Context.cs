@@ -23,6 +23,8 @@ namespace Garage2.Models
         public System.Data.Entity.DbSet<Garage2.Models.Vehicle> Vehicles { get; set; }
 
         public System.Data.Entity.DbSet<Garage2.Models.Member> Members { get; set; }
+
+        public System.Data.Entity.DbSet<Garage2.Models.TypeVehicle> TypeVehicles { get; set; }
     
     }
 }

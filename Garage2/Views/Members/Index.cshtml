@@ -7,17 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")<br />
-
-    @using (Html.BeginForm())
-    {
-        <p>
-            Find by MemberId: @Html.TextBox("SearchString")
-            <input type="submit" value="Search" />
-        </p>
-        
-    }
-    
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -53,8 +43,7 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.MemberId }) |
             @Html.ActionLink("Details", "Details", new { id=item.MemberId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.MemberId }) |
-            @Html.ActionLink("Park Vehicle", "ParkVehicle", new { id = item.MemberId })
+            @Html.ActionLink("Delete", "Delete", new { id=item.MemberId })
         </td>
     </tr>
 }
