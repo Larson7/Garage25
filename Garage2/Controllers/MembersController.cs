@@ -15,7 +15,7 @@ namespace Garage2.Controllers
         private Garage2Context db = new Garage2Context();
 
         // GET: Members
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             var member = from m in db.Members
                          select m;
