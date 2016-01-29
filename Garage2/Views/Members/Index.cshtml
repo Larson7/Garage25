@@ -7,7 +7,17 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create")<br />
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            Find by MemberId: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+        
+    }
+    
 </p>
 <table class="table">
     <tr>
