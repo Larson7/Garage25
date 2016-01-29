@@ -33,5 +33,9 @@ namespace Garage2.Models
     
         public int ParkNr { get; set; }
 
+        public virtual Member Member { get; set; }
+        public virtual TypeVehicle Type { get; set; }
+
+
     }
 }

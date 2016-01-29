@@ -15,5 +15,7 @@ namespace Garage2.Models
 
         [Range(0, 9999)]
         public int Wheels { get; set; }
+
+        public virtual ICollection<Vehicle> Vehicles { get; set; }
     }
 }

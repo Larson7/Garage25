@@ -59,13 +59,14 @@ namespace Garage2.Controllers
                 string value = id.TrimEnd(',');
                 vehicle.MemberId = Convert.ToInt32(value);
 
+                ViewBag.Name = Request["Name"];
                 vehicle.CheckInTime = DateTime.Now;
                 vehicle.RegNr = vehicle.RegNr.ToUpper();
                 db.Vehicles.Add(vehicle);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            
 
 
             return View(vehicle);
